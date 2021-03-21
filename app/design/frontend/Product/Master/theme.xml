@@ -1,0 +1,9 @@
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../lib/internal/Magento/Framework/Config/etc/theme.xsd">
+    <title>Product Master</title>
+<!--    khai bao theme muon ke thua-->
+    <parent>Magento/blank</parent>
+    <media>
+<!--        anh preview cua theme-->
+        <preview_image>media/magento.jpg</preview_image>
+    </media>
+</theme>

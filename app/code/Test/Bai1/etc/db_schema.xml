@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="rooms" resource="default" engine="innodb" comment="Rooms Table">
+        <column xsi:type="int" name="room_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Room ID"/>
+        <column xsi:type="varchar" name="room_name" length="255" unsigned="true" nullable="false"
+                 comment="Room name"/>
+        <column xsi:type="boolean" name="status" padding="1" unsigned="true" nullable="false"
+                comment="Status rooms"/>
+        <column xsi:type="varchar" name="address" nullable="false" length="255" comment="Address hotel"/>
+        <column xsi:type="varchar" name="sku" nullable="true" length="64" comment="SKU"/>
+        <column xsi:type="int" name="price" unsigned="false" nullable="false"
+                default="0" comment="Price Hotel"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="room_id"/>
+        </constraint>
+    </table>
+
+    <table name="bookings" resource="default" engine="innodb" comment="Bookings Table">
+        <column xsi:type="int" name="booking_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Booking ID"/>
+        <column xsi:type="int" name="room_id" padding="10" unsigned="true" nullable="false"
+                comment="Room ID"/>
+        <column xsi:type="varchar" name="fullname" nullable="false" length="255" comment="Fullname Customer"/>
+        <column xsi:type="varchar" name="tel" nullable="false" default="0972912878" comment="Tel Customer"/>
+        <column xsi:type="varchar" name="address" length="255" nullable="false" comment="Address Customer"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="booking_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ROOM_ID_BOOKING_ROOM_ID"
+                    table="bookings" column="room_id" referenceTable="rooms"
+                    referenceColumn="room_id" onDelete="CASCADE"/>
+    </table>
+</schema>
